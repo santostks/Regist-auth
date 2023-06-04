@@ -4,7 +4,7 @@ import {View, Text, Alert, ActivityIndicator, ScrollView,
         StyleSheet, TextInput} from 'react-native'
 import BotaoFlutuante from '../components/BotaoFlutuante'
 import themes from '../themes'
-import {MaterialCommunityIcons} from '@expo/vector-icons'
+import { SimpleLineIcons } from '@expo/vector-icons'; 
 import {auth, database} from '../../config/firebase'
 import {signOut} from 'firebase/auth'
 import {collection, onSnapshot, orderBy, query, where} 
@@ -18,13 +18,10 @@ export default function Home({navigation}){
    
    useLayoutEffect(()=> {
     navigation.setOptions({
-        headerLeft: () => <></>, //remove o voltar
-        headerRight: () => <MaterialCommunityIcons.Button
-        name="logout"
-        backgroundColor={themes.colors.brand.verdeEscuro}
+        headerLeft: () =>
+        <SimpleLineIcons name="logout" size={24} color={themes.colors.brand.verdeEscuro}
         onPress={handleLogout}>
-            Logout
-        </MaterialCommunityIcons.Button>
+        </SimpleLineIcons>
     })
    },[navigation])
 
@@ -59,7 +56,7 @@ export default function Home({navigation}){
      <ScrollView contentContainerStyle={{
             paddingBottom: 64
         }}>
-        <Text style={styles.tituloApp}>Controle de Items</Text>            
+                   
         {carregaItems && 
         <ActivityIndicator size="large"
         color={themes.colors.brand.verdeEscuro}/>}
@@ -67,12 +64,12 @@ export default function Home({navigation}){
         <TextInput
             placeholder='Buscar 🔎'
             autoFocus
-placeholderTextColor={themes.colors.neutral.foreground}
-style={styles.buscaInput}
-onChangeText={(text)=> setBusca(text)}
-/>
+        placeholderTextColor={themes.colors.neutral.foreground}
+        style={styles.buscaInput}
+        onChangeText={(text)=> setBusca(text)}
+        />
 
-        {/*<Text>{JSON.stringify(criptos)}</Text>*/} 
+        {} 
         {
         items
         .filter((item) =>
@@ -83,8 +80,7 @@ onChangeText={(text)=> setBusca(text)}
         }
         
         <BotaoFlutuante 
-                 onPress={() => navigation.navigate('Novo Item')}
-                 icon="cash-plus" />
+                 onPress={() => navigation.navigate('Novo Item')}/>
      </ScrollView>
     </View>
 )

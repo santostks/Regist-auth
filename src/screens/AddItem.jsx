@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, TextInput, 
-         Pressable, Alert } from 'react-native'
-import EmojiPicker, { pt } from 'rn-emoji-keyboard'
+         Pressable, Alert} from 'react-native'
 import themes from '../themes'
-
 import { database, auth } from '../../config/firebase'
 import { collection, addDoc } from 'firebase/firestore'
 import moment from 'moment'
@@ -11,6 +9,7 @@ const hoje = moment()
 
 export default function AddItem({ navigation }) {
     const [isOpen, setIsOpen] = useState(false)
+    const [submitted, setSubmitted] = useState('')
     const [novoItem, setNovoItem] = useState({
         nome: '',
         categoria: '',
@@ -21,23 +20,24 @@ export default function AddItem({ navigation }) {
     })
 
     const validarItem = async () => {
+        setSubmitted (!submitted);
         //Efetuando as validações dos formulários
         if(novoItem.nome === ''){
             Alert.alert('Atenção',
             'O campo nome  é obrigatório')
             return
         }
-        if(novoItem.categoria.length === ''){
+        /*if(novoItem.categoria.length === ''){
             Alert.alert('Atenção',
             'O campo categoria é obrigatório')
             return
-        }
-        if(parseFloat(novoItem.valor) <= 0){
+        }*/
+        if(parseFloat(novoItem.valor) === ''){
             Alert.alert('Atenção',
             'O valor do item deve ser informado')
             return
         }
-        if(parseFloat(novoItem.quantidade) <= 0){
+        if(parseFloat(novoItem.quantidade) === ''){
             Alert.alert('Atenção',
             'A quantidade em estoque é inválida')
             return
@@ -61,10 +61,12 @@ export default function AddItem({ navigation }) {
                 onChangeText={(text) => setNovoItem(
                     { ...novoItem, nome: text })}
             />
+        
              <TextInput
                 style={styles.input}
                 placeholder='Categoria'
                 maxLength={15}
+                value= {novoItem.categoria}
                 keyboardType='default'
                 autoCapitalize={'characters'}
                 onChangeText={(text) => setNovoItem(
@@ -87,7 +89,15 @@ export default function AddItem({ navigation }) {
             />
             <Pressable onPress={validarItem} style={styles.botao}>
                 <Text styles={styles.textoBotao}>Salvar</Text>
+                 
+                 {submitted ?
+                <Text style={styles.title}>
+                Registrado com sucesso!</Text>
+                :
+                null
+                }
             </Pressable>
+           
 
         </View>
     )
@@ -101,10 +111,6 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 32, fontWeight: '700'
-    },
-    emoji: {
-        fontSize: 100, borderWidth: 1, borderRadius: 8,
-        padding: 8, borderColor: '#DDD'
     },
     input: {
         width: '90%', padding: 8, marginVertical: 4,

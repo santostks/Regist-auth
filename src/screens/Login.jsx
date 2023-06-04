@@ -20,13 +20,13 @@ export default function Login() {
     function handleLogin() {
         //Efetuando as validações básicas do form
         if(email === '' || senha ===''){
-            Alert.alert('Atenção⚠',
-            'Informe um email e senha para efetuar o login')
+            Alert.alert('Atenção',
+            'Informe um email e senha para realizar o login')
             return
         }
         if(senha.length < 6){
-            Alert.alert('Atenção⚠',
-            'A senha deve ter no mínimo 6 caracteres')
+            Alert.alert('Atenção',
+            'A senha informada é muito curta !')
             return  
         }
         setEfetuandoLogin(true)
@@ -38,7 +38,7 @@ export default function Login() {
         })
         .catch((error) => {
             Alert.alert('Erro',
-          `Erro ao efetuar o login: ${error.message}`)
+          `Erro ao realizar o login: ${error.message}`)
         })
         setEfetuandoLogin(false)
     }
@@ -77,10 +77,10 @@ export default function Login() {
                     </TouchableOpacity>
 
 
-                    <TouchableOpacity
+                    <TouchableOpacity style={styles.createusuario}
                         onPress={() => navigation.navigate('Signup')}>
-                        <Text>
-                            Ainda não é usuário? Registre-se
+                        <Text style={styles.loginButtonText}>
+                            Cadastre-se
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -117,7 +117,13 @@ const styles = StyleSheet.create({
         marginBottom: 8
     },
     form: {
-        width: '80%'
+        width: '55%'
+    },
+    createusuario:{
+        backgroundColor: themes.colors.utility.info,
+        borderRadius: 4,
+        padding: 8,
+        marginTop: -2
     },
     label: {
         fontSize: 16,

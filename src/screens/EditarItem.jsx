@@ -54,7 +54,7 @@ export default function EditarItem({ route }) {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>
-                Alterar Item
+                Realize as Alterações
             </Text>
            
             <TextInput
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
         marginTop: 8
     },
     textoBotao: {
-        color: themes.colors.neutral.foreground,
+        backgroundColor: themes.colors.utility.info,
         fontWeight: 'bold',
         textAlign: 'center',
     }

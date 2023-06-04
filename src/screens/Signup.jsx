@@ -47,12 +47,10 @@ export default function Signup({navigation}) {
     return (
         <View style={{
             paddingTop: insets.top,
-            // backgroundColor: themes.colors.brand.roxoEscuro,
             flex: 1
         }}>
             <View style={styles.container}>
-                <Text style={styles.titulo}>Signup</Text>
-                <Image source={require('../../assets/icon.png')}
+                <Image source={require('../../assets/icons8-cadastro-100.png')}
                     style={styles.logo} />
 
                 <View style={styles.form}>
@@ -80,10 +78,10 @@ export default function Signup({navigation}) {
                     </TouchableOpacity>
 
 
-                    <TouchableOpacity
+                    <TouchableOpacity style={styles.createusuario}
                         onPress={() => navigation.navigate('Login')}>
-                        <Text>
-                            Já é um usuário? Efetue o login
+                        <Text style={styles.loginButtonText}>
+                        LOGIN
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -111,6 +109,12 @@ const styles = StyleSheet.create({
         height: 200,
         marginVertical: 16
     },
+    createusuario:{
+        backgroundColor: themes.colors.utility.info,
+        borderRadius: 4,
+        padding: 8,
+        marginTop: -2
+    },
     input: {
         borderWidth: 1,
         borderColor: themes.colors.brand.verdeEscuro,
@@ -120,12 +124,13 @@ const styles = StyleSheet.create({
         marginBottom: 8
     },
     form: {
-        width: '80%'
+        width: '60%'
     },
     label: {
         fontSize: 16,
         marginBottom: 8,
-        color: themes.colors.brand.verdeEscuro
+        color: themes.colors.neutral.foreground,
+        fontWeight: 'bold',
     },
     loginButton: {
         backgroundColor: themes.colors.utility.info,

@@ -10,14 +10,15 @@ const Stack = createNativeStackNavigator()
 function AppStack() {
     return (
         <Stack.Navigator>
+            
             <Stack.Screen
                 name="Login"
                 options={{ headerShown: false }}
                 component={Login} />
             <Stack.Screen 
                 name="Home" 
-                component={Home} 
-                options ={{ headerTitle: 'Cadastro Itens'}} />
+                options={{title: ''}} 
+                component={Home}/>
             <Stack.Screen 
                 name="Novo Item" 
                 component={AddItem} 
